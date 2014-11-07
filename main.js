@@ -1,26 +1,31 @@
-
-Array.prototype.clean = function(deleteValue) 
+Array.prototype.clean = function(deleteValue)
 {
-        for (var i = 0; i < this.length; i++) 
+        for (var i = 0; i < this.length; i++)
         {
                 if (this[i][0] == deleteValue)
-                { this.splice(i, 1); i--; } 
+                { this.splice(i, 1); i--; }
         } return this;
 };
 
+function scroll()
+{
+window.scrollBy(0,20000);
+}
 
-window.scrollBy(0,2000); // horizontal and vertical scroll increments
 
+setInterval(function(){scroll()}, 500);
 
+function scrape()
+{
 var all_links = document.querySelectorAll('a');
 var arr = []
 var names=[]
 for(var i=0; i<all_links.length;i++)
 {  
-if(all_links[i].href.endsWith("browse_search")) 
+if(all_links[i].href.endsWith("browse_search"))
 
  {
-   arr.push(all_links[i].href.toString()); 
+   arr.push(all_links[i].href.toString());
    names.push(all_links[i].innerHTML)
   }
 
@@ -54,16 +59,33 @@ for(var j=0;j<arr.length;j++)
     MultiArray [j][1] = new_name_array[j];
 }
 MultiArray.clean(undefined);
-
-
+ 
 var csvContent = "data:text/csv;charset=utf-8,";
 MultiArray.forEach(function(infoArray, index){
 
    dataString = infoArray.join("\n");
     csvContent += dataString + "\n";
 
-}); 
+});
 
 var encodedUri = encodeURI(csvContent);
 window.open(encodedUri);
+}
 
+
+time=window.prompt("Enter how many seconds to wait before starting scraping ",10);
+
+function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
+
+if(isEmpty(time))
+   {
+
+window.setTimeout(function(){scrape()}, 15000);
+
+}
+else
+{
+window.setTimeout(function(){scrape()}, time*1000);
+}
