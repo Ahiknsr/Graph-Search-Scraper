@@ -7,7 +7,7 @@ How to Run in Firefox:
 
      There are two ways to use this ,
      
-a)First way is to use the addon avilable in this repo and then enter your query in search box and then click the fb logo 
+a)First way is to use the addon avilable in this repo , install the addon  and then enter your query in search box and then click the fb logo 
 
 b)Second way is    
 
